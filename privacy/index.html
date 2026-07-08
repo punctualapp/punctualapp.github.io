@@ -6,82 +6,139 @@
 <title>Privacy Policy — Punctual</title>
 <meta name="description" content="Privacy policy for Punctual, the free open-source macOS meeting reminder app. How we access, use, store, and share your calendar data.">
 <link rel="canonical" href="https://punctual-app.com/privacy/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" id="meta-theme" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235fb0ff'/%3E%3Cstop offset='1' stop-color='%230a5fe0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-size='17' font-weight='700' fill='%23fff'%3EP%3C/text%3E%3C/svg%3E">
+<script>
+(function(){
+  var t = localStorage.getItem('theme');
+  if (t !== 'light' && t !== 'dark') {
+    t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.dataset.theme = t;
+  document.getElementById('meta-theme').content = t === 'dark' ? '#0a0f1c' : '#ffffff';
+})();
+</script>
 <style>
 :root{
   --ink:#0e0f12;
+  --heading:#0e0f12;
   --muted:#5c6270;
   --faint:#9aa1ad;
-  --blue:#0a5fe0;
-  --grad-logo:linear-gradient(150deg,#5fb0ff,#0a5fe0);
+  --page-bg:linear-gradient(180deg,#ffffff 0%,#f7faff 28%,#ffffff 60%);
+  --grad-accent:linear-gradient(120deg,#2f86ff,#0a4ec2);
+  --logo-a:#5fb0ff;
+  --logo-b:#0a4ec2;
+  --logo-ring:rgba(47,134,255,0.2);
+  --link:#0a5fe0;
+  --nav-bg:rgba(255,255,255,0.82);
+  --nav-border:rgba(14,15,18,0.07);
+  --nav-shadow:0 2px 16px rgba(30,80,180,0.07);
+  --nav-link:#5c6270;
+  --toggle-border:rgba(14,15,18,0.12);
+  --toggle-bg:rgba(255,255,255,0.9);
+  --toggle-color:#5c6270;
+  --callout-bg:rgba(240,246,255,0.75);
+  --callout-border:rgba(10,95,224,0.18);
+  --callout-text:#33415c;
+  --footer-border:rgba(14,15,18,0.07);
+}
+:root[data-theme="dark"]{
+  --ink:#e8edf7;
+  --heading:#ffffff;
+  --muted:#9fb0cc;
+  --faint:#5b6b8c;
+  --page-bg:linear-gradient(180deg,#0a0f1c 0%,#0d1526 30%,#0a0f1c 100%);
+  --grad-accent:linear-gradient(120deg,#a3c8ff,#3d8bff);
+  --logo-a:#7db9ff;
+  --logo-b:#2f86ff;
+  --logo-ring:rgba(125,185,255,0.22);
+  --link:#8db9ff;
+  --nav-bg:rgba(16,23,40,0.75);
+  --nav-border:rgba(140,170,230,0.14);
+  --nav-shadow:0 2px 20px rgba(0,0,0,0.4);
+  --nav-link:#9fb0cc;
+  --toggle-border:rgba(140,170,230,0.25);
+  --toggle-bg:rgba(255,255,255,0.08);
+  --toggle-color:#c8d6f0;
+  --callout-bg:rgba(47,134,255,0.1);
+  --callout-border:rgba(125,185,255,0.3);
+  --callout-text:#c8d6f0;
+  --footer-border:rgba(140,170,230,0.12);
 }
 *,*::before,*::after{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Instrument Sans',system-ui,sans-serif;
   color:var(--ink);
-  background:linear-gradient(180deg,#ffffff 0%,#f7faff 28%,#ffffff 60%);
+  background:var(--page-bg);
   -webkit-font-smoothing:antialiased;
 }
-a{color:var(--blue);text-decoration:none}
+a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
+.mark{display:block;flex:none}
 
 .nav-wrap{position:sticky;top:0;z-index:50;display:flex;justify-content:center;padding:20px 16px 0}
 .nav{
   display:flex;align-items:center;justify-content:space-between;
   width:920px;max-width:100%;
-  background:rgba(255,255,255,0.82);
-  border:1px solid rgba(14,15,18,0.07);
-  border-radius:99px;padding:10px 20px;
-  box-shadow:0 2px 16px rgba(30,80,180,0.07);
+  background:var(--nav-bg);
+  border:1px solid var(--nav-border);
+  border-radius:99px;padding:10px 12px 10px 20px;
+  box-shadow:var(--nav-shadow);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
-.nav-brand{display:flex;align-items:center;gap:9px;color:var(--ink)}
+.nav-brand{display:flex;align-items:center;gap:9px;color:var(--heading)}
 .nav-brand:hover{text-decoration:none}
-.nav-logo{
-  width:26px;height:26px;border-radius:8px;background:var(--grad-logo);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.45);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:13px;font-weight:700;
-}
 .nav-name{font-size:15.5px;font-weight:650;letter-spacing:-0.01em}
-.nav-back{font-size:13.5px;font-weight:500;color:var(--muted)}
-.nav-back:hover{color:var(--ink);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-back{font-size:13.5px;font-weight:500;color:var(--nav-link)}
+.nav-back:hover{color:var(--heading);text-decoration:none}
+.theme-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:99px;
+  border:1px solid var(--toggle-border);
+  background:var(--toggle-bg);
+  color:var(--toggle-color);
+  font-size:15px;cursor:pointer;padding:0;
+  font-family:inherit;line-height:1;
+}
 
 main{max-width:720px;margin:0 auto;padding:64px 24px 80px}
-h1{font-size:44px;font-weight:600;letter-spacing:-0.035em;line-height:1.05;margin:0}
+h1{font-size:44px;font-weight:600;letter-spacing:-0.035em;line-height:1.05;margin:0;color:var(--heading)}
 h1 em{
   font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;
-  background:linear-gradient(120deg,#2f86ff,#0a4ec2);
+  background:var(--grad-accent);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .updated{margin:14px 0 0;font-size:13.5px;color:var(--faint)}
 .lede{margin:24px 0 0;font-size:17px;line-height:1.6;color:var(--muted)}
-h2{font-size:22px;font-weight:650;letter-spacing:-0.02em;margin:48px 0 0}
+h2{font-size:22px;font-weight:650;letter-spacing:-0.02em;margin:48px 0 0;color:var(--heading)}
 p,li{font-size:15.5px;line-height:1.65;color:var(--muted)}
 p{margin:12px 0 0}
 ul{margin:12px 0 0;padding-left:22px}
 li{margin-top:6px}
-strong{color:var(--ink);font-weight:600}
+strong{color:var(--heading);font-weight:600}
 .callout{
   margin:16px 0 0;padding:18px 22px;border-radius:14px;
-  background:rgba(240,246,255,0.75);border:1px solid rgba(10,95,224,0.18);
+  background:var(--callout-bg);border:1px solid var(--callout-border);
 }
-.callout p{margin:0;color:#33415c}
+.callout p{margin:0;color:var(--callout-text)}
 
 footer{
   display:flex;align-items:center;justify-content:space-between;
-  padding:24px 48px;border-top:1px solid rgba(14,15,18,0.07);
+  padding:24px 48px;border-top:1px solid var(--footer-border);
   font-size:13px;color:var(--faint);flex-wrap:wrap;gap:12px;
 }
 .footer-brand{display:flex;align-items:center;gap:8px}
-.footer-logo{width:18px;height:18px;border-radius:5px;background:var(--grad-logo)}
 .footer-links{display:flex;gap:22px}
 .footer-links a{color:var(--faint)}
-.footer-links a:hover{color:var(--ink);text-decoration:none}
+.footer-links a:hover{color:var(--heading);text-decoration:none}
 @media (max-width:560px){
   h1{font-size:34px}
   main{padding:48px 20px 64px}
@@ -91,13 +148,30 @@ footer{
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="markg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color:var(--logo-a,#5fb0ff)"></stop>
+      <stop offset="1" style="stop-color:var(--logo-b,#0a4ec2)"></stop>
+    </linearGradient>
+    <symbol id="p-mark" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="42" fill="none" style="stroke:var(--logo-ring,rgba(47,134,255,0.2))" stroke-width="16"></circle>
+      <path d="M 60 18 A 42 42 0 1 1 30.3 30.3" fill="none" stroke="url(#markg)" stroke-width="16" stroke-linecap="round"></path>
+      <circle cx="60" cy="60" r="8" fill="url(#markg)"></circle>
+    </symbol>
+  </defs>
+</svg>
+
 <div class="nav-wrap">
   <nav class="nav">
     <a class="nav-brand" href="/">
-      <span class="nav-logo">P</span>
+      <svg class="mark" width="26" height="26"><use href="#p-mark"/></svg>
       <span class="nav-name">Punctual</span>
     </a>
-    <a class="nav-back" href="/">← Back to home</a>
+    <div class="nav-right">
+      <a class="nav-back" href="/">← Back to home</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">☾</button>
+    </div>
   </nav>
 </div>
 
@@ -158,7 +232,7 @@ footer{
 
 <footer>
   <div class="footer-brand">
-    <div class="footer-logo"></div>
+    <svg class="mark" width="18" height="18"><use href="#p-mark"/></svg>
     <span>© 2026 Punctual · MIT License</span>
   </div>
   <div class="footer-links">
@@ -167,6 +241,25 @@ footer{
     <a href="https://github.com/punctualapp">GitHub</a>
   </div>
 </footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var meta = document.getElementById('meta-theme');
+  function apply(t){
+    document.documentElement.dataset.theme = t;
+    localStorage.setItem('theme', t);
+    btn.textContent = t === 'dark' ? '☀︎' : '☾';
+    btn.title = t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    meta.content = t === 'dark' ? '#0a0f1c' : '#ffffff';
+  }
+  btn.textContent = document.documentElement.dataset.theme === 'dark' ? '☀︎' : '☾';
+  btn.title = document.documentElement.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  btn.addEventListener('click', function(){
+    apply(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
 
 </body>
 </html>
